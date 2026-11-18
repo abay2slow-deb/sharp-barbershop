@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharp Barbershop — Classic cuts, modern style</title>
+  <meta name="description" content="Men's haircuts, fades and beard trims in Almaty. Book online in 30 seconds.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #111113;
+      --surface: #1a1a1d;
+      --line: #2a2a2f;
+      --text: #f2efe9;
+      --muted: #9a958d;
+      --gold: #d4af6a;
+      --max: 1120px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: "Inter", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    h1, h2, h3 { font-family: "Oswald", Impact, sans-serif; text-transform: uppercase; letter-spacing: .02em; line-height: 1.05; margin: 0; }
+    a { color: inherit; }
+    .container { width: min(100% - 40px, var(--max)); margin-inline: auto; }
+
+    /* Header */
+    .header { border-bottom: 1px solid var(--line); }
+    .header__inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { font-family: "Oswald", sans-serif; font-size: 22px; font-weight: 700; letter-spacing: .12em; text-decoration: none; }
+    .logo span { color: var(--gold); }
+    .nav { display: flex; align-items: center; gap: 28px; }
+    .nav a { text-decoration: none; color: var(--muted); font-weight: 500; }
+    .nav a:hover { color: var(--text); }
+
+    .btn { display: inline-block; padding: 15px 30px; font-weight: 600; text-decoration: none; text-transform: uppercase; letter-spacing: .06em; font-size: 14px; border-radius: 4px; transition: background .15s, color .15s; }
+    .btn--gold { background: var(--gold); color: #17140e; }
+    .btn--gold:hover { background: #e3c287; }
+    .btn--outline { border: 1px solid var(--gold); color: var(--gold); }
+    .btn--outline:hover { background: var(--gold); color: #17140e; }
+    .nav .btn { color: #17140e; padding: 11px 20px; }
+
+    /* Hero */
+    .hero { position: relative; padding: 110px 0 100px; overflow: hidden; }
+    .hero::after { content: ""; position: absolute; right: -120px; top: 50%; width: 520px; height: 520px; transform: translateY(-50%); border: 1px solid var(--line); border-radius: 50%; box-shadow: 0 0 0 60px var(--bg), 0 0 0 61px var(--line); pointer-events: none; }
+    .hero__content { position: relative; z-index: 1; max-width: 640px; }
+    .tag { color: var(--gold); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; font-size: 13px; }
+    .hero h1 { font-size: clamp(48px, 8vw, 96px); margin: 18px 0 22px; }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero p { font-size: 19px; color: var(--muted); max-width: 500px; margin: 0 0 36px; }
+    .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .stats { display: flex; gap: 48px; margin-top: 64px; flex-wrap: wrap; }
+    .stat b { display: block; font-family: "Oswald", sans-serif; font-size: 34px; color: var(--gold); }
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    section { padding: 88px 0; }
+    .section-title { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
+    .section-title h2 { font-size: clamp(36px, 5vw, 56px); }
+    .section-title p { color: var(--muted); max-width: 380px; margin: 0; }
+
+    /* Services */
+    .services { background: var(--surface); }
+    .price-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; }
+    .price { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .price h3 { font-size: 22px; }
+    .price strong { font-family: "Oswald", sans-serif; font-size: 22px; color: var(--gold); }
+    .price p { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: 15px; }
+
+    /* Team */
+    .team { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .barber { display: flex; gap: 22px; align-items: center; padding: 28px; border: 1px solid var(--line); border-radius: 8px; }
+    .barber__avatar { flex: none; width: 88px; height: 88px; border-radius: 50%; border: 1px solid var(--gold); display: grid; place-items: center; font-family: "Oswald", sans-serif; font-size: 34px; color: var(--gold); }
+    .barber h3 { font-size: 26px; }
+    .barber p { margin: 4px 0 0; color: var(--muted); }
+
+    /* Booking */
+    .booking__box { text-align: center; border: 1px solid var(--gold); border-radius: 8px; padding: 72px 28px; }
+    .booking__box h2 { font-size: clamp(36px, 5vw, 60px); margin-bottom: 16px; }
+    .booking__box p { color: var(--muted); max-width: 460px; margin: 0 auto 32px; }
+
+    /* Footer */
+    .footer { border-top: 1px solid var(--line); padding: 44px 0; }
+    .footer__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .footer h3 { font-size: 15px; letter-spacing: .12em; color: var(--gold); margin-bottom: 10px; }
+    .footer p { margin: 0; color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .price-list, .team, .footer__grid { grid-template-columns: 1fr; }
+      .hero::after { display: none; }
+    }
+    @media (max-width: 600px) {
+      .nav a:not(.btn) { display: none; }
+      .hero { padding: 64px 0; }
+      section { padding: 64px 0; }
+      .stats { gap: 28px; }
+      .barber { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">SHARP<span>.</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="#services">Services</a>
+        <a href="#team">Barbers</a>
+        <a href="#booking" class="btn btn--gold">Book now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero__content">
+          <span class="tag">Barbershop · Almaty</span>
+          <h1>Classic cuts.<br><em>Modern style.</em></h1>
+          <p>Haircuts, fades and beard trims by barbers who take their time. Book online in 30 seconds, no calls needed.</p>
+          <div class="hero__actions">
+            <a href="#booking" class="btn btn--gold">Book a visit</a>
+            <a href="#services" class="btn btn--outline">Prices</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><b>10:00–20:00</b><span>Open every day</span></div>
+            <div class="stat"><b>30 sec</b><span>Online booking</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>Services</h2>
+          <p>Every service includes a consultation, so you leave with exactly what you wanted.</p>
+        </div>
+        <div class="price-list">
+          <div class="price"><h3>Men's haircut</h3><strong>6 000 ₸</strong><p>Wash, cut and styling · 60 min</p></div>
+          <div class="price"><h3>Skin fade</h3><strong>7 000 ₸</strong><p>Clean fade with smooth transitions · 60 min</p></div>
+          <div class="price"><h3>Beard trim</h3><strong>4 000 ₸</strong><p>Shape, line-up and hot towel · 30 min</p></div>
+          <div class="price"><h3>Haircut + beard</h3><strong>9 000 ₸</strong><p>Our most popular combo · 90 min</p></div>
+          <div class="price"><h3>Kids haircut</h3><strong>4 000 ₸</strong><p>For boys under 12 · 30 min</p></div>
+          <div class="price"><h3>Head shave</h3><strong>5 000 ₸</strong><p>Razor finish and hot towel · 40 min</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our barbers</h2>
+        </div>
+        <div class="team">
+          <article class="barber">
+            <div class="barber__avatar" aria-hidden="true">A</div>
+            <div><h3>Arman</h3><p>Fades and classic cuts</p></div>
+          </article>
+          <article class="barber">
+            <div class="barber__avatar" aria-hidden="true">D</div>
+            <div><h3>Daniyar</h3><p>Beards and styling</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking">
+      <div class="container">
+        <div class="booking__box">
+          <h2>Ready for a fresh cut?</h2>
+          <p>Choose a service, a barber and a free time slot right in Telegram. We'll remind you 2 hours before your visit.</p>
+          <a href="https://t.me/demo_sharp_barber_booking_bot" class="btn btn--gold">Book in Telegram</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div><h3>Address</h3><p>12 Abay Ave, Almaty</p></div>
+      <div><h3>Hours</h3><p>Every day, 10:00–20:00</p></div>
+      <div><h3>Contact</h3><p>+7 700 000 00 00</p></div>
+    </div>
+  </footer>
+
+</body>
+</html>
